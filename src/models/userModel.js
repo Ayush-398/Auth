@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { unique } from "next/dist/build/utils";
+
 import { type } from "os";
 
 const userSchema = new mongoose.Schema({

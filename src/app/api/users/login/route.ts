@@ -21,9 +21,9 @@ export async function POST(request: NextRequest){
             return NextResponse.json({error:"User already exists"},{status:400})
            }
 
-       const vaildPassword = await bctyptjs.compare
-       ( password,user.passsword)
-       if(!vaildPassword){
+       const validPassword = await bctyptjs.compare
+       ( password,user.password)
+       if(!validPassword){
         return NextResponse.json({error:"Invalid password"},
             {status:400})
        }
