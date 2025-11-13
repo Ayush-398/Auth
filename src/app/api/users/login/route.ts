@@ -1,6 +1,6 @@
 import {connect} from "@/dbConfig/dbConfig";
 import User from "@/models/userModel.js";
-import bctyptjs from  "bcryptjs";
+import bcryptjs from "bcryptjs";
 import { NextRequest,NextResponse } from "next/server";
 
 import jwt from "jsonwebtoken";
@@ -21,7 +21,7 @@ export async function POST(request: NextRequest){
             return NextResponse.json({error:"User already exists"},{status:400})
            }
 
-       const validPassword = await bctyptjs.compare
+       const validPassword = await bcryptjs.compare
        ( password,user.password)
        if(!validPassword){
         return NextResponse.json({error:"Invalid password"},

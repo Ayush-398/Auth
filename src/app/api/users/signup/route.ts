@@ -1,6 +1,6 @@
 import {connect} from "@/dbConfig/dbConfig";
 import User from "@/models/userModel.js";
-import bctyptjs from  "bcryptjs";
+import bcryptjs from "bcryptjs";
 import { NextRequest,NextResponse } from "next/server";
 
 
@@ -36,8 +36,8 @@ export async function POST(request: NextRequest){
 
            //hashing 
 
-           const salt = await bctyptjs.genSalt(10)
-           const hashedPassword = await bctyptjs.hash
+           const salt = await bcryptjs.genSalt(10)
+           const hashedPassword = await bcryptjs.hash
            (password,salt)
 
            const newUser = new User({
