@@ -4,7 +4,7 @@ import { NextRequest } from "next/server";
 export function middleware(request:NextRequest){
    const path = request.nextUrl.pathname
 
-   const isPublicPath = path === '/login' || path === '/signup'
+   const isPublicPath = path === '/login' || path === '/signup' || path === '/verifyemail'
    const token = request.cookies.get('token')?.value || ''
 
    // If user is logged in and tries to access login/signup, redirect to profile
@@ -26,5 +26,6 @@ export const config = {
         '/profile/:path*',
         '/login',
         '/signup',
+        '/verifyemail'
     ]
 }
