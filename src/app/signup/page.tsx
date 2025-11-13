@@ -26,7 +26,8 @@ export default function SignupPage() {
             router.push("/login");
             
         } catch (error:any) {
-            console.log("Signup failed", error.message);
+            const errorMessage = error.response?.data?.error || error.message || "Signup failed";
+            toast.error(errorMessage);
             
             toast.error(error.message);
         }finally {
