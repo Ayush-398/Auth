@@ -21,40 +21,18 @@ export default function LoginPage(){
             setLoading(true);
             const response = await axios.post("/api/users/login", user);
             console.log("login success", response.data);
+            toast.success("Login successful!");
             router.push("/profile");
             
         } catch (error:any) {
-            console.log("Signup failed", error.message);
-            
-            toast.error(error.message);
+            console.log("Login failed", error);
+            // Fix: Axios errors are in error.response.data
+            const errorMessage = error.response?.data?.error || error.message || "Login failed";
+            toast.error(errorMessage);
         }finally {
             setLoading(false);
         }
-
-
-
-
-
-
-
-
-
-
  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     useEffect(() => {
         if(user.email.length > 0 && user.password.length > 0 ) {
@@ -70,18 +48,18 @@ return (
        <hr/>
 
 
-        <label htmlFor="username">email</label>
-       <input className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
-         id="username"
+        <label htmlFor="email">email</label>
+       <input className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
+         id="email"
          type="text"
          value={user.email}
          onChange={(e)=> setUser({...user,email:e.target.value})}
          placeholder="email"
          />
          
-         <label htmlFor="username">password</label>
-       <input className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
-         id="passwors"
+         <label htmlFor="password">password</label>
+       <input className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
+         id="password"
          type="password"
          value={user.password}
          onChange={(e)=> setUser({...user,password:e.target.value})}
@@ -91,8 +69,9 @@ return (
 
          <button 
          onClick={onLogin}
-         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
-         >Login</button>
+         disabled={buttonDisabled}
+         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 disabled:opacity-50"
+         >{buttonDisabled ? "Please fill all fields" : "Login"}</button>
          <Link href={"./signup"}> Visit Signup page</Link>
 
 
