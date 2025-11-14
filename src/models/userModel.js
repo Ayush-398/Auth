@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please provide a password"]
     },
-    isVerified: { // Fixed spelling
+    isVerified: { 
         type: Boolean,
         default: false,
     },
