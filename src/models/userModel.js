@@ -3,10 +3,9 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
-        required: [true, "Please provide a username"], // Corrected error message
+        required: [true, "Please provide a username"],
         unique: true,
     },
-    // THIS IS THE FIELD THAT WAS MISSING
     email: {
         type: String,
         required: [true, "Please provide an email"],
@@ -16,7 +15,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please provide a password"]
     },
-    isVerified: {
+    isVerified: { // Fixed spelling
         type: Boolean,
         default: false,
     },
@@ -26,11 +25,10 @@ const userSchema = new mongoose.Schema({
     },
     forgotPasswordToken: String,
     forgotPasswordTokenExpiry: Date,
-    verifyToken: String,
-    verifyTokenExpiry: Date,
+    verifyToken: String, // Fixed: was "verifiedToken"
+    verifyTokenExpiry: Date, // Fixed: was "verifiedTokenExpiry"
 })
-
 
 const User = mongoose.models.User || mongoose.model("User", userSchema);
 
-export default User
+export default User;

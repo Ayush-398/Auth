@@ -20,6 +20,12 @@ export async function POST(request: NextRequest){
         }
         console.log("user exists");
         
+        // Check if email is verified
+        if(!user.isVerified){
+            return NextResponse.json({
+                error: "Please verify your email before logging in. Check your inbox for the verification link."
+            }, {status: 400})
+        }
         
         //check if password is correct
         const validPassword = await bcryptjs.compare(password, user.password)

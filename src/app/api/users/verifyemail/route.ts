@@ -2,10 +2,7 @@ import {connect} from "@/dbConfig/dbConfig";
 import { NextRequest, NextResponse } from "next/server";
 import User from "@/models/userModel";
 
-
-
 connect()
-
 
 export async function POST(request: NextRequest){
 
@@ -21,7 +18,7 @@ export async function POST(request: NextRequest){
         }
         console.log(user);
 
-        user.isVerified = true; 
+        user.isVerified = true;  // Fixed spelling
         user.verifyToken = undefined;
         user.verifyTokenExpiry = undefined;
         await user.save();
@@ -30,7 +27,6 @@ export async function POST(request: NextRequest){
             message: "Email verified successfully",
             success: true
         })
-
 
     } catch (error:any) {
         return NextResponse.json({error: error.message}, {status: 500})

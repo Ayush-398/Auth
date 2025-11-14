@@ -26,7 +26,6 @@ export default function LoginPage(){
             
         } catch (error:any) {
             console.log("Login failed", error);
-            // Fix: Axios errors are in error.response.data
             const errorMessage = error.response?.data?.error || error.message || "Login failed";
             toast.error(errorMessage);
         }finally {
@@ -47,7 +46,6 @@ return (
        <h1>{loading ? "Processing": "Login"}</h1>
        <hr/>
 
-
         <label htmlFor="email">email</label>
        <input className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
          id="email"
@@ -66,15 +64,18 @@ return (
          placeholder="password"
          />
   
-
          <button 
          onClick={onLogin}
          disabled={buttonDisabled}
          className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 disabled:opacity-50"
          >{buttonDisabled ? "Please fill all fields" : "Login"}</button>
-         <Link href={"./signup"}> Visit Signup page</Link>
 
-
+         <div className="flex flex-col items-center gap-2">
+             <Link href="/forgotpassword" className="text-blue-500 hover:underline text-sm">
+                 Forgot Password?
+             </Link>
+             <Link href="/signup">Visit Signup page</Link>
+         </div>
     </div>
 )
 
