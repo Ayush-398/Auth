@@ -35,7 +35,7 @@ export const sendEmail = async ({email, emailType, userId}: any) => {
         const action = emailType === "VERIFY" ? "verify your email" : "reset your password";
 
         const mailOptions = {
-            from: 'hitesh@gmail.com',
+            from: 'ayush@gmail.com',
             to: email,
             subject: emailType === "VERIFY" ? "Verify your email" : "Reset your password",
             html: `<p>Click <a href="${url}">here</a> to ${action}
